@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 33ff2aca01b1ae1479ab1251e2db4e1b
+  - enabled: 1
+    path: Assets/Scenes/FrontOfHouse.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Kitchen.unity
+    guid: 9f62db905977b0740bcc1a309f61d8a2
+  - enabled: 1
+    path: Assets/Scenes/Learn.unity
+    guid: 20c2fc9205e12b64a8bb7ea4f8d8d56f
+  - enabled: 1
+    path: Assets/Scenes/Pasta.unity
+    guid: e6f6bf381c3068741aa6e49e432a8396
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 2c0533cce5996ec499452566b932aa77
+  m_configObjects: {}
