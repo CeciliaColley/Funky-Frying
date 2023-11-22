@@ -34,6 +34,7 @@ public class GameRules : MonoBehaviour
 
     void Update()
     {
+        //TODO: Fix - Remove redundant comments
         // Check if the audio has reached its end
         if (Music.time >= audioLength)
         {
@@ -62,6 +63,7 @@ public class GameRules : MonoBehaviour
         ok.SetActive(false);
         cantServe.SetActive(false);
 
+        //TODO: Fix - Simplify, we can talk about this in class
         if (percentage == 100)
         {
             perfect.SetActive(true);

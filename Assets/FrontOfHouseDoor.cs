@@ -11,6 +11,7 @@ public class FrontOfHouseDoor : MonoBehaviour
     {
         if (StaticManager.Instance.hasOrdered == true )
         {
+            //TODO: Fix - Hardcoded value - Serialize string to be able to reuse this script
             SceneManager.LoadScene("Kitchen");
         }
     }

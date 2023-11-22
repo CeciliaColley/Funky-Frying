@@ -19,6 +19,7 @@ public class TutorialHitZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //TODO: TP2 - Fix - Repeated code
         string VegetableName;
         VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - "(Clone)".Length));
 

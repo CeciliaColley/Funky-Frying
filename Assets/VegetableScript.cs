@@ -14,6 +14,7 @@ public class VegetableScript : MonoBehaviour
         //Moves the vegetable according to the speed set in GameRules, and destroys the vegetable offscreen.
         transform.position = transform.position + Vector3.right * StaticManager.Instance.speed * Time.deltaTime;
 
+        //TODO: TP2 - Fix - OnBecameInvisible
         if (transform.position.x > StaticManager.Instance.deadZone)
         {
             Destroy(gameObject);

@@ -22,14 +22,17 @@ public class VegetableSpawner : MonoBehaviour
         
         vegetables = new GameObject[] {Tomato, Garlic, Basil, Parmesan}; // initialize array with vegetables.
         
+        //TODO: TP1 - Unused method/variable - Why is this in multiple scripts?
         System.Random randomNumber = new System.Random(); // Initialize random number
     }
 
     // Update is called once per frame
     void Update()
     {
+        //TODO: TP2 - Fix - Clean code
         if (VegetablesSpawned < ((15*GameRules.BeatsInSong)/100))
         {
+            //TODO: TP2 - Could be a coroutine/Invoke
             if (Timer < spawnRate) // Count up to spawnrate...
             {
                 Timer = Timer + Time.deltaTime;

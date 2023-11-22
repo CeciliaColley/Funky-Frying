@@ -8,6 +8,7 @@ public class Flash : MonoBehaviour
 {
     public SpriteRenderer SpriteRenderer;
     public float CurrentValue = 0;
+    //TODO: Fix - Use summary (place 3 slashes ///) Instead of simple comment
     public float SaturateOrDesaturate = 1f; // -1 for desaturate, +1 for saturate
     public Color FlashingColour;
     private Color OriginalColor;
@@ -20,6 +21,7 @@ public class Flash : MonoBehaviour
     }
 
 
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     // Update is called once per frame
     void Update()
     {
