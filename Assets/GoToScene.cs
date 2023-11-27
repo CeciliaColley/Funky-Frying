@@ -10,6 +10,7 @@ public class GoToScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    //TODO: TP2 - Fix - This method doesn't belong in this class
     public void Serve()
     {
         StaticManager.Instance.isServing = true;

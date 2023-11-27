@@ -36,8 +36,10 @@ public class TutorialVegetableSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO: TP2 - Fix - Clean code
         if (TomatoesChopped < 1 && GarlicChopped < 1 && BasilChopped < 1 && ParmesanChopped < 1) // If 3 tomatoes haven't been chopped
         {
+            //TODO: TP2 - Could be a coroutine/Invoke
             if (Timer < spawnRate) // Count up to spawnrate...
             {
                 Timer = Timer + Time.deltaTime;

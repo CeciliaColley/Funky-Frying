@@ -8,6 +8,7 @@ public class RecipeBook : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //TODO: TP2 - Fix - Clean code
         if (StaticManager.Instance.knowsPomodoro == false )
         {
             kitchenUI.MainPanel.SetActive(true);

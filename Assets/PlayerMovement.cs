@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         input = new CustomInput();
         Rigidbody = GetComponent<Rigidbody2D>();
+        //TODO: TP2 - Fix - Possible null reference (camera.main)
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         playerHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
@@ -50,14 +51,17 @@ public class PlayerMovement : MonoBehaviour
         transform.position = ViewPosition;
     }
 
+    //TODO: TP2 - Move all input reads to specific class
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
+        //TODO: TP2 - Fix - Hardcoded value/s
         animator.SetBool("isMoving", true);
         moveVector = value.ReadValue<Vector2>();
     }
 
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
+        //TODO: TP2 - Fix - Hardcoded value/s
         animator.SetBool("isMoving", false);
         moveVector = Vector2.zero;
     }

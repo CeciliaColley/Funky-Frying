@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class Slice : MonoBehaviour
 {
+    //TODO: TP1 - Unused method/variable
     public Rigidbody2D Rigidbody;
     private Vector3 StartingPoint;
     private bool Chopped = false;
@@ -22,6 +23,7 @@ public class Slice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO: TP2 - Fix - Clean code
         if (Chopped == true)
         {
             transform.position = transform.position + Vector3.down * SliceSpeed * Time.deltaTime;
@@ -32,6 +34,7 @@ public class Slice : MonoBehaviour
             }
         } else if (Chopped == false)
         {
+            //TODO: TP2 - Fix - This is the old InputManager, I failed to notice it on correction, but it is prohibited to be used in this assignment. Fix this for the next one or it will fail automatically.
             // Moves knife when user presses one of the arrows, and remembers which arrow was pressed.
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {

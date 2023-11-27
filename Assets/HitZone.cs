@@ -23,9 +23,11 @@ public class HitZone: MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         string VegetableName;
+        //TODO: TP2 - Fix - Hardcoded value/s - Serialize a suffix variable that has a default value = "(Clone)"
         VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - "(Clone)".Length));
         
         
+            //TODO: TP2 - Fix - Hardcoded value/s
             if (VegetableName == "Tomato")
             {
                 if (Slice.ArrowPressed == Slice.InputOptions.up)

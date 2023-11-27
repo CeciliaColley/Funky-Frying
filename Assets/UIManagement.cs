@@ -86,6 +86,7 @@ public class UIManagement : MonoBehaviour
 
     void Start()
     {
+        //TODO: TP1 - Unused method/variable
         System.Random randomNumber = new System.Random(); // Initialize random number
         MainPanel.SetActive(false);
 
@@ -101,6 +102,7 @@ public class UIManagement : MonoBehaviour
 
     public void DisplayDialogue()
     {
+        //TODO: TP2 - Fix - Clean code
         if (!StaticManager.Instance.isServing)
         {
             if (StaticManager.Instance.dialogueTracker < DialogueArray.Length) // Ordering the pasta
