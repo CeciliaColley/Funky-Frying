@@ -4,65 +4,78 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
 public class HitZone: MonoBehaviour
 {
-    public GameRules GameRules; // Reference to GameRules script, assigned in start.
-    public VegetableScript Vegetable; // Reference to the vegetable script, assigned in engine.
-    public Slice Slice;
-    public BoxCollider2D TomatoCollider;
-    public BoxCollider2D GarlicCollider;
-    public BoxCollider2D BasilCollider;
-    public BoxCollider2D ParmesanCollider;
-    public Sprite choppedTomatoSprite;
-    public Sprite choppedGarlicSprite;
-    public Sprite choppedBasilSprite;
-    public Sprite choppedParmesanSprite;
-    public SpriteRenderer SpriteRenderer;
-
+    [SerializeField] private GameRules gameRules;
+    [SerializeField] private VegetableScript vegetable;
+    [SerializeField] private SliceActions slice;
+    [SerializeField] private BoxCollider2D tomatoCollider;
+    [SerializeField] private BoxCollider2D garlicCollider;
+    [SerializeField] private BoxCollider2D basilCollider;
+    [SerializeField] private BoxCollider2D parmesanCollider;
+    [SerializeField] private Sprite choppedTomatoSprite;
+    [SerializeField] private Sprite choppedGarlicSprite;
+    [SerializeField] private Sprite choppedBasilSprite;
+    [SerializeField] private Sprite choppedParmesanSprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private string suffix = "(Clone)";
+    [SerializeField] private string vegetableName1;
+    [SerializeField] private string vegetableName2;
+    [SerializeField] private string vegetableName3;
+    [SerializeField] private string vegetableName4;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         string VegetableName;
         //TODO: TP2 - Fix - Hardcoded value/s - Serialize a suffix variable that has a default value = "(Clone)"
-        VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - "(Clone)".Length));
+        VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - suffix.Length));
         
         
             //TODO: TP2 - Fix - Hardcoded value/s
-            if (VegetableName == "Tomato")
+            if (VegetableName == vegetableName1)
             {
-                if (Slice.ArrowPressed == Slice.InputOptions.up)
+            Debug.Log("Tomato if");
+            if (slice.ArrowPressed == SliceActions.InputOptions.up)
                 {
-                    GameRules.AddScore(GameRules.PerfectScore);
-                    SpriteRenderer.sprite = choppedTomatoSprite;
-                    Destroy(TomatoCollider);
+                    gameRules.AddScore(gameRules.chopPoint);
+                    spriteRenderer.sprite = choppedTomatoSprite;
+                    Destroy(tomatoCollider);
+                    Debug.Log("Tomato Chopped");
                 }
 
             }
-            if (VegetableName == "Basil")
+            if (VegetableName == vegetableName2)
             {
-                if (Slice.ArrowPressed == Slice.InputOptions.down)
+            Debug.Log("Basil if");
+            if (slice.ArrowPressed == SliceActions.InputOptions.down)
                 {
-                    GameRules.AddScore(GameRules.PerfectScore);
-                    SpriteRenderer.sprite = choppedBasilSprite;
-                    Destroy(BasilCollider);
+                    gameRules.AddScore(gameRules.chopPoint);
+                    spriteRenderer.sprite = choppedBasilSprite;
+                    Destroy(basilCollider);
+                    Debug.Log("Basil Chopped");
                 }
             }
-            if (VegetableName == "Garlic")
+            if (VegetableName == vegetableName3)
             {
-                if (Slice.ArrowPressed == Slice.InputOptions.left)
+            Debug.Log("Garlic if");
+            if (slice.ArrowPressed == SliceActions.InputOptions.left)
                 {
-                    GameRules.AddScore(GameRules.PerfectScore);
-                    SpriteRenderer.sprite = choppedGarlicSprite;
-                    Destroy(GarlicCollider);
+                    gameRules.AddScore(gameRules.chopPoint);
+                    spriteRenderer.sprite = choppedGarlicSprite;
+                    Destroy(garlicCollider);
+                    Debug.Log("Garlic Chopped");
                 }
             }
-            if (VegetableName == "Parmesan")
+            if (VegetableName == vegetableName4)
             {
-                if (Slice.ArrowPressed == Slice.InputOptions.right)
+                Debug.Log("Parm if");
+                if (slice.ArrowPressed == SliceActions.InputOptions.right)
                 {
-                    GameRules.AddScore(GameRules.PerfectScore);
-                    SpriteRenderer.sprite = choppedParmesanSprite;
-                    Destroy(ParmesanCollider);
+                    gameRules.AddScore(gameRules.chopPoint);
+                    spriteRenderer.sprite = choppedParmesanSprite;
+                    Destroy(parmesanCollider);
+                    Debug.Log("Parm Chopped");
                 }
             }
         
@@ -72,15 +85,9 @@ public class HitZone: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameRules = GameObject.FindAnyObjectByType<GameRules>(); // reference assigned in script because prefabs don't allow assignment in engine
-        Slice = GameObject.FindAnyObjectByType<Slice>();
-        Vegetable = GameObject.FindAnyObjectByType<VegetableScript>();
-        SpriteRenderer = GetComponentInParent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        gameRules = GameObject.FindAnyObjectByType<GameRules>();
+        slice = GameObject.FindAnyObjectByType<SliceActions>();
+        vegetable = GameObject.FindAnyObjectByType<VegetableScript>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
 }

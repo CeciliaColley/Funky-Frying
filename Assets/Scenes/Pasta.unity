@@ -598,10 +598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695facaf0bf94ec48a309d0fa7bd8012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerScore: 0
-  PerfectScore: 1
-  ScoreText: {fileID: 2071811068}
-  Percentage: {fileID: 2131031631}
+  playerScore: 0
+  chopPoint: 1
+  scoreText: {fileID: 2071811068}
+  percentageString: {fileID: 2131031631}
   scorePanel: {fileID: 2044460935}
   perfect: {fileID: 174911165}
   great: {fileID: 576680732}
@@ -611,8 +611,8 @@ MonoBehaviour:
   tryAgain: {fileID: 912716926}
   serve: {fileID: 2143843139}
   tempo: 110
-  BeatsInSong: 162
-  Music: {fileID: 1189698902}
+  beatsInSong: 164
+  music: {fileID: 1189698902}
   audioLength: 0
   percentage: 0
 --- !u!4 &624177714
@@ -1406,10 +1406,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508538551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c43525fe8c3ba014483349d902fdf2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d5384b958c3bc44cb78d23078126682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 1508538552}
+  StartingPoint: {x: 0, y: 0, z: 0}
+  Chopped: 0
   SliceSpeed: 20
   ArrowPressed: 0
 --- !u!1 &1633899795

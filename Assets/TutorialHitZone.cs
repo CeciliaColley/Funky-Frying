@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialHitZone : MonoBehaviour
 {
     public TutorialVegetableSpawner TutorialVegetableSpawner;
-    public Slice Slice;
+    public SliceActions Slice;
     public BoxCollider2D TutorialTomatoCollider;
     public BoxCollider2D TutorialGarlicCollider;
     public BoxCollider2D TutorialBasilCollider;
@@ -26,7 +26,7 @@ public class TutorialHitZone : MonoBehaviour
 
         if (VegetableName == "TutorialTomato")
         {
-            if (Slice.ArrowPressed == Slice.InputOptions.up)
+            if (Slice.ArrowPressed == SliceActions.InputOptions.up)
             {
                 TutorialVegetableSpawner.TomatoesChopped = TutorialVegetableSpawner.TomatoesChopped +1;
                 SpriteRenderer.sprite = choppedTomatoSprite;
@@ -36,7 +36,7 @@ public class TutorialHitZone : MonoBehaviour
         }
         if (VegetableName == "TutorialBasil")
         {
-            if (Slice.ArrowPressed == Slice.InputOptions.down)
+            if (Slice.ArrowPressed == SliceActions.InputOptions.down)
             {
                 TutorialVegetableSpawner.BasilChopped = TutorialVegetableSpawner.BasilChopped + 1;
                 SpriteRenderer.sprite = choppedBasilSprite;
@@ -45,7 +45,7 @@ public class TutorialHitZone : MonoBehaviour
         }
         if (VegetableName == "TutorialGarlic")
         {
-            if (Slice.ArrowPressed == Slice.InputOptions.left)
+            if (Slice.ArrowPressed == SliceActions.InputOptions.left)
             {
                 TutorialVegetableSpawner.GarlicChopped = TutorialVegetableSpawner.GarlicChopped + 1;
                 SpriteRenderer.sprite = choppedGarlicSprite;
@@ -54,7 +54,7 @@ public class TutorialHitZone : MonoBehaviour
         }
         if (VegetableName == "TutorialParmesan")
         {
-            if (Slice.ArrowPressed == Slice.InputOptions.right)
+            if (Slice.ArrowPressed == SliceActions.InputOptions.right)
             {
                 TutorialVegetableSpawner.ParmesanChopped = TutorialVegetableSpawner.ParmesanChopped + 1;
                 SpriteRenderer.sprite = choppedParmesanSprite;
@@ -68,7 +68,7 @@ public class TutorialHitZone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Slice = GameObject.FindAnyObjectByType<Slice>();
+        Slice = GameObject.FindAnyObjectByType<SliceActions>();
         TutorialVegetableSpawner = GameObject.FindAnyObjectByType<TutorialVegetableSpawner>();
         SpriteRenderer = GetComponentInParent<SpriteRenderer>();
     }

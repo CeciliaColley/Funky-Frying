@@ -1853,11 +1853,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ddbef39f0d4f747a44bba0933ed530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteRenderer: {fileID: 1633189825}
-  CurrentValue: 0
-  SaturateOrDesaturate: 1
-  FlashingColour: {r: 1, g: 0.8845416, b: 0, a: 1}
-  flashspeed: 2
+  spriteRenderer: {fileID: 1633189825}
+  currentValue: 0
+  saturateOrDesaturate: 1
+  flashingColor: {r: 1, g: 0.8885435, b: 0, a: 0}
+  originalColor: {r: 1, g: 1, b: 1, a: 0}
+  flashSpeed: 2
   isFlashing: 0
 --- !u!212 &1633189825 stripped
 SpriteRenderer:
@@ -2190,7 +2191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987213379}
   - component: {fileID: 1987213380}
-  - component: {fileID: 1987213382}
+  - component: {fileID: 1987213384}
   - component: {fileID: 1987213381}
   - component: {fileID: 1987213383}
   m_Layer: 5
@@ -2227,11 +2228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ddbef39f0d4f747a44bba0933ed530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpriteRenderer: {fileID: 1987213381}
-  CurrentValue: 0
-  SaturateOrDesaturate: 1
-  FlashingColour: {r: 1, g: 0.9243382, b: 0, a: 1}
-  flashspeed: 2
+  spriteRenderer: {fileID: 1987213381}
+  currentValue: 0
+  saturateOrDesaturate: 1
+  flashingColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  flashSpeed: 2
   isFlashing: 0
 --- !u!212 &1987213381
 SpriteRenderer:
@@ -2285,18 +2287,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1987213382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987213376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ec6e9099cf6404aa99f1ed10ff6892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1987213383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2342,6 +2332,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9, y: 7.24}
   m_EdgeRadius: 0
+--- !u!114 &1987213384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987213376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ec6e9099cf6404aa99f1ed10ff6892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Kitchen
 --- !u!1 &2056887249
 GameObject:
   m_ObjectHideFlags: 0

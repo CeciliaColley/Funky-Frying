@@ -1,0 +1,67 @@
+{
+    "name": "SliceInput",
+    "maps": [
+        {
+            "name": "SliceMap",
+            "id": "0036a7d8-87ca-4056-8e7b-2f10cd052d26",
+            "actions": [
+                {
+                    "name": "SliceAction",
+                    "type": "Button",
+                    "id": "da5d1396-d96a-4933-92cb-cfde182f3f63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dbf1bf86-6981-435a-bdb2-fc7bf2e6547c",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SliceAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a5a2bbe-6ec2-47fe-b12e-abe5f5279a82",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SliceAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2dd73c3c-e33d-4da9-b583-396e13a096f8",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SliceAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1aa47dbc-3440-48da-845e-15a8dfef9716",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SliceAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

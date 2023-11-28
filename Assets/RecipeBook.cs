@@ -9,12 +9,12 @@ public class RecipeBook : MonoBehaviour
     private void OnMouseDown()
     {
         //TODO: TP2 - Fix - Clean code
-        if (StaticManager.Instance.knowsPomodoro == false )
+        if (!StaticManager.Instance.knowsPomodoro)
         {
             kitchenUI.MainPanel.SetActive(true);
             kitchenUI.LearnButton.SetActive(true);
             kitchenUI.CookButton.SetActive(false);
-        } else if (StaticManager.Instance.knowsPomodoro == true)
+        } else
         {
             kitchenUI.MainPanel.SetActive(true);
             kitchenUI.LearnButton.SetActive(true);

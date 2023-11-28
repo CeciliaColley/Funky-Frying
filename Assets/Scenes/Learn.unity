@@ -1464,7 +1464,7 @@ GameObject:
   - component: {fileID: 1789450112}
   - component: {fileID: 1789450111}
   - component: {fileID: 1789450110}
-  - component: {fileID: 1789450109}
+  - component: {fileID: 1789450114}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -1472,21 +1472,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1789450109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789450108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c43525fe8c3ba014483349d902fdf2aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 1789450110}
-  SliceSpeed: 20
-  ArrowPressed: 0
 --- !u!50 &1789450110
 Rigidbody2D:
   serializedVersion: 4
@@ -1626,6 +1611,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1789450114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789450108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5384b958c3bc44cb78d23078126682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 1789450110}
+  StartingPoint: {x: 0, y: 0, z: 0}
+  Chopped: 0
+  SliceSpeed: 20
+  ArrowPressed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

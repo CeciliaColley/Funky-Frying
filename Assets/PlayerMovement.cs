@@ -14,12 +14,13 @@ public class PlayerMovement : MonoBehaviour
     private float playerWidth;
     private float playerHeight;
     public Animator animator;
+    private string isMovingBoolName = "isMoving";
     private void Awake()
     {
         input = new CustomInput();
         Rigidbody = GetComponent<Rigidbody2D>();
         //TODO: TP2 - Fix - Possible null reference (camera.main)
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        if (Camera.main != null) { screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); }
         playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
         playerHeight = transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
     }
@@ -55,14 +56,14 @@ public class PlayerMovement : MonoBehaviour
     private void OnMovementPerformed(InputAction.CallbackContext value)
     {
         //TODO: TP2 - Fix - Hardcoded value/s
-        animator.SetBool("isMoving", true);
+        animator.SetBool(isMovingBoolName, true);
         moveVector = value.ReadValue<Vector2>();
     }
 
     private void OnMovementCancelled(InputAction.CallbackContext value)
     {
         //TODO: TP2 - Fix - Hardcoded value/s
-        animator.SetBool("isMoving", false);
+        animator.SetBool(isMovingBoolName, false);
         moveVector = Vector2.zero;
     }
 

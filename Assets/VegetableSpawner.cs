@@ -30,7 +30,7 @@ public class VegetableSpawner : MonoBehaviour
     void Update()
     {
         //TODO: TP2 - Fix - Clean code
-        if (VegetablesSpawned < ((15*GameRules.BeatsInSong)/100))
+        if (VegetablesSpawned < ((15*GameRules.beatsInSong)/100))
         {
             //TODO: TP2 - Could be a coroutine/Invoke
             if (Timer < spawnRate) // Count up to spawnrate...
@@ -45,7 +45,7 @@ public class VegetableSpawner : MonoBehaviour
                 VegetablesSpawned++;
             }
         }
-        if ( VegetablesSpawned >= ((15 * GameRules.BeatsInSong) / 100) && VegetablesSpawned < ((30 * GameRules.BeatsInSong) / 100))
+        if ( VegetablesSpawned >= ((15 * GameRules.beatsInSong) / 100) && VegetablesSpawned < ((30 * GameRules.beatsInSong) / 100))
         {
             if (Timer < spawnRate) // Count up to spawnrate...
             {
@@ -59,7 +59,7 @@ public class VegetableSpawner : MonoBehaviour
                 VegetablesSpawned++;
             }
         }
-        if (VegetablesSpawned >= ((30 * GameRules.BeatsInSong) / 100) && VegetablesSpawned < ((45 * GameRules.BeatsInSong) / 100))
+        if (VegetablesSpawned >= ((30 * GameRules.beatsInSong) / 100) && VegetablesSpawned < ((45 * GameRules.beatsInSong) / 100))
         {
             if (Timer < spawnRate) // Count up to spawnrate...
             {
@@ -73,7 +73,7 @@ public class VegetableSpawner : MonoBehaviour
                 VegetablesSpawned++;
             }
         }
-        if (VegetablesSpawned >= ((45 * GameRules.BeatsInSong) / 100) && VegetablesSpawned < GameRules.BeatsInSong)
+        if (VegetablesSpawned >= ((45 * GameRules.beatsInSong) / 100) && VegetablesSpawned < GameRules.beatsInSong)
         {
             if (Timer < spawnRate) // Count up to spawnrate...
             {

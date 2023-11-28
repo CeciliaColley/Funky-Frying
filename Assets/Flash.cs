@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class Flash : MonoBehaviour
 {
-    public SpriteRenderer SpriteRenderer;
-    public float CurrentValue = 0;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float currentValue = 0;
     //TODO: Fix - Use summary (place 3 slashes ///) Instead of simple comment
-    public float SaturateOrDesaturate = 1f; // -1 for desaturate, +1 for saturate
-    public Color FlashingColour;
-    private Color OriginalColor;
-    public float flashspeed = 2f;
-    public bool isFlashing = false;
+    [SerializeField] private float saturateOrDesaturate = 1f; /// -1 for desaturate, +1 for saturate
+    [SerializeField] private Color flashingColor;
+    [SerializeField] private Color originalColor;
+    [SerializeField] private float flashSpeed = 2f;
+    [SerializeField] public bool isFlashing = false;
 
     private void Awake()
     {
-        OriginalColor = SpriteRenderer.color;
+        originalColor = spriteRenderer.color;
     }
 
 
@@ -27,19 +27,19 @@ public class Flash : MonoBehaviour
     {
         if (isFlashing == true)
         {
-            CurrentValue += Time.deltaTime * SaturateOrDesaturate * flashspeed;
-            if (CurrentValue > 1)
+            currentValue += Time.deltaTime * saturateOrDesaturate * flashSpeed;
+            if (currentValue > 1)
             {
-                SaturateOrDesaturate = -1;
-                CurrentValue = 1;
+                saturateOrDesaturate = -1;
+                currentValue = 1;
             }
-            else if (CurrentValue < 0)
+            else if (currentValue < 0)
             {
-                SaturateOrDesaturate = 1;
-                CurrentValue = 0;
+                saturateOrDesaturate = 1;
+                currentValue = 0;
             }
 
-            SpriteRenderer.color = Color.Lerp(OriginalColor, FlashingColour, CurrentValue);
+            spriteRenderer.color = Color.Lerp(originalColor, flashingColor, currentValue);
         }
     }
 }

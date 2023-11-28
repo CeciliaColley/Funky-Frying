@@ -5,40 +5,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
+[System.Serializable]
 public class GameRules : MonoBehaviour
 {
-    public int PlayerScore = 0;
-    public int PerfectScore = 1;
-    public Text ScoreText;
-    public Text Percentage;
-    public GameObject scorePanel;
-    public GameObject perfect;
-    public GameObject great;
-    public GameObject good;
-    public GameObject ok;
-    public GameObject cantServe;
-    public GameObject tryAgain;
-    public GameObject serve;
-    public int tempo = 118; // Tempo of the song
+    [SerializeField] private int playerScore = 0;
+    [SerializeField] public int chopPoint = 1;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text percentageString;
+    [SerializeField] private GameObject scorePanel;
+    [SerializeField] private GameObject perfect;
+    [SerializeField] private GameObject great;
+    [SerializeField] private GameObject good;
+    [SerializeField] private GameObject ok;
+    [SerializeField] private GameObject cantServe;
+    [SerializeField] private GameObject tryAgain;
+    [SerializeField] private GameObject serve;
+    [SerializeField] public int tempo = 118;
     
-    public int BeatsInSong = 164;
-    public AudioSource Music;
-    public float audioLength;
-    public int percentage;
+    [SerializeField] public int beatsInSong = 164;
+    [SerializeField] private AudioSource music;
+    [SerializeField] private float audioLength;
+    [SerializeField] private int percentage;
 
     void Start()
     {
         scorePanel.SetActive(false);
-        audioLength = Music.clip.length;
+        audioLength = music.clip.length;
     }
 
     void Update()
     {
         //TODO: Fix - Remove redundant comments
-        // Check if the audio has reached its end
-        if (Music.time >= audioLength)
+        if (music.time >= audioLength)
         {
-            // Perform actions or trigger events when the audio ends
             OnMusicEnd();
         }
     }
@@ -46,15 +45,15 @@ public class GameRules : MonoBehaviour
     void OnMusicEnd()
     {
         Debug.Log("Music Ended, show UI now");
-        if (PlayerScore != 0)
+        if (playerScore != 0)
         {
-            percentage = PlayerScore * 100 / BeatsInSong;
+            percentage = playerScore * 100 / beatsInSong;
         }
         else percentage = 0;
 
         StaticManager.Instance.playerScore = percentage;
         
-        Percentage.text = percentage.ToString() + "%";
+        percentageString.text = percentage.ToString() + "%";
         
         scorePanel.SetActive(true);
         perfect.SetActive(false);
@@ -64,38 +63,20 @@ public class GameRules : MonoBehaviour
         cantServe.SetActive(false);
 
         //TODO: Fix - Simplify, we can talk about this in class
-        if (percentage == 100)
-        {
-            perfect.SetActive(true);
-            Debug.Log("Perfect");
-        } else if (percentage >= 90 && percentage <= 99)
-        {
-            great.SetActive(true);
-            Debug.Log("Great");
-        } else if (percentage >= 80 && percentage <= 89)
-        {
-            good.SetActive(true);
-            Debug.Log("Good");
-        } else if (percentage >= 70 && percentage <= 79)
-        {
-            ok.SetActive(true);
-            Debug.Log("Ok");
-        } else if (percentage <= 69)
-        {
-            cantServe.SetActive(true);
-            serve.SetActive(false);
-            Debug.Log("Can't Serve");
-        }
-
+        if (percentage == 100) { perfect.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage >= 90) { great.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage >= 80) {good.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage >= 70) { ok.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage <= 69) { cantServe.SetActive(true); serve.SetActive(false); }
 
     }
 
     public void AddScore(int Score)
     {
-        PlayerScore = PlayerScore + Score;
-        if (ScoreText != null )
+        playerScore = playerScore + Score;
+        if (scoreText != null )
         {
-            ScoreText.text = PlayerScore.ToString();
+            scoreText.text = playerScore.ToString();
         }
     }
 }
