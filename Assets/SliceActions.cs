@@ -18,7 +18,7 @@ public class SliceActions : MonoBehaviour, SliceInputActions.ISliceMapActions
     }
     [SerializeField] public InputOptions ArrowPressed;
 
-    private SliceInputActions sliceInput;
+    [SerializeField] private SliceInputActions sliceInput;
 
     private void Awake()
     {

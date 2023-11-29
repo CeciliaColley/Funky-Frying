@@ -4,31 +4,32 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 public class UIManagement : MonoBehaviour
 {
-    public GameObject Hiya;
-    public GameObject Welcome;
-    public GameObject nextButton;
-    public GameObject MainPanel;
-    public GameObject Lawyer;
-    public Flash DoorFlash;
-    public GameObject UI;
-    public Text dialogueText;
-    public GameObject RuggieroImage;
-    public GameObject AnnaImage;
-    public VideoPlayer videoPlayer;
-    int dialogueTracker = 0;
-    int speakerTracker = 0;
+    [SerializeField] private GameObject Hiya;
+    [SerializeField] private GameObject Welcome;
+    [SerializeField] public GameObject nextButton;
+    [SerializeField] public GameObject MainPanel;
+    [SerializeField] private GameObject Lawyer;
+    [SerializeField] private Flash DoorFlash;
+    [SerializeField] private GameObject UI;
+    [SerializeField] private Text dialogueText;
+    [SerializeField] public GameObject RuggieroImage;
+    [SerializeField] private GameObject AnnaImage;
+    [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private int dialogueTracker = 0;
+    [SerializeField] private int speakerTracker = 0;
 
     public string[] DialogueArray = {
-  /*0*/  "I'm good, thank you. Could I get a pasta pomodoro please?",
-  /*1*/   "Um... Well, actually, we don't have pasta pomodoro on the menu today.",
-  /*2*/   "It's ok. I'll have a pasta carbonara then.",
-  /*3*/   "Uhhh... We actually don't have pasta on the me-",
-  /*4*/   "Ooooooooooooo!",
-  /*5*/   "I'm so excited! I've been looking forward to this all week, I even canceled my 4:00 o'clock meeting!",
-  /*6*/   "Ok... One pasta pomodoro coming right up!",
+        "I'm good, thank you. Could I get a pasta pomodoro please?",
+        "Um... Well, actually, we don't have pasta pomodoro on the menu today.",
+        "It's ok. I'll have a pasta carbonara then.",
+        "Uhhh... We actually don't have pasta on the me-",
+        "Ooooooooooooo!",
+        "I'm so excited! I've been looking forward to this all week, I even canceled my 4:00 o'clock meeting!",
+        "Ok... One pasta pomodoro coming right up!",
     };
 
     string[] DefaultDialogueArray = {
@@ -88,6 +89,7 @@ public class UIManagement : MonoBehaviour
     {
         //TODO: TP1 - Unused method/variable: I thought I needed to do that every time I used a random number!
         MainPanel.SetActive(false);
+        
 
     }
     public void ChooseOption()
@@ -156,7 +158,7 @@ public class UIManagement : MonoBehaviour
         Hiya.SetActive(false);
         Welcome.SetActive(false);
         MainPanel.SetActive(true);
-        if (Lawyer != null)
+        if (StaticManager.Instance.lawyerIsDining == true)
         {
             if (StaticManager.Instance.playerScore == 100)
             {
@@ -229,7 +231,9 @@ public class UIManagement : MonoBehaviour
     {
         if (dialogueTracker == Dialogue.Length)
         {
-            Destroy(Customer);
+            StaticManager.Instance.lawyerIsDining = false;
+            Lawyer = GameObject.Find("Lawyer(Clone)");
+            Destroy(Lawyer);
             StaticManager.Instance.isServing = false;
         }
     }

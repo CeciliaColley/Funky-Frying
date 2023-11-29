@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class KitchenUI : MonoBehaviour
 {
     //TODO: TP1 - Unused method/variable
-    public GameObject MainPanel;
-    public GameObject LearnButton;
-    public GameObject CookButton;
+    [SerializeField] public GameObject MainPanel;
+    [SerializeField] public GameObject LearnButton;
+    [SerializeField] public GameObject CookButton;
     //TODO: TP1 - Unused method/variable
 
     //TODO: TP2 - Remove redundant comments

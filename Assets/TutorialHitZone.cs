@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class TutorialHitZone : MonoBehaviour
 {
-    public TutorialVegetableSpawner TutorialVegetableSpawner;
-    public SpriteRenderer spriteRenderer;
-    public SliceActions slice;
+    [SerializeField] private TutorialVegetableSpawner TutorialVegetableSpawner;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SliceActions slice;
     [SerializeField] private string suffix = "(Clone)";
     [SerializeField] private string[] ingredientNames = { "TutorialTomato", "TutorialBasil", "TutorialGarlic", "TutorialParmesan" };
     [SerializeField] private Sprite[] choppedSprites = new Sprite[4];

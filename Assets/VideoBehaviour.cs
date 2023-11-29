@@ -6,8 +6,8 @@ using UnityEngine.Video;
 
 public class VideoBehaviour : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
-    public RawImage RawImage;
+    [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private RawImage RawImage;
 
 
     void Start()

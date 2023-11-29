@@ -6,15 +6,15 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CustomInput input = null;
-    private Vector2 moveVector = Vector2.zero;
-    private Rigidbody2D Rigidbody = null;
-    public float moveSpeed = 10f;
-    private Vector2 screenBounds;
-    private float playerWidth;
-    private float playerHeight;
-    public Animator animator;
-    private string isMovingBoolName = "isMoving";
+    [SerializeField] private CustomInput input = null;
+    [SerializeField] private Vector2 moveVector = Vector2.zero;
+    [SerializeField] private Rigidbody2D Rigidbody = null;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private Vector2 screenBounds;
+    [SerializeField] private float playerWidth;
+    [SerializeField] private float playerHeight;
+    [SerializeField] private Animator animator;
+    [SerializeField] private string isMovingBoolName = "isMoving";
     private void Awake()
     {
         input = new CustomInput();

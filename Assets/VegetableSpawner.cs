@@ -4,76 +4,33 @@ using UnityEngine;
 
 public class VegetableSpawner : MonoBehaviour
 {
-    public GameObject Tomato;
-    public GameObject Garlic;
-    public GameObject Basil;
-    public GameObject Parmesan;
-    public GameRules GameRules;
-    private float Timer = 0;
-    private float spawnRate;
-    GameObject[] vegetables;
-    public int VegetablesSpawned = 0;
+    [SerializeField] private GameObject Tomato;
+    [SerializeField] private GameObject Garlic;
+    [SerializeField] private GameObject Basil;
+    [SerializeField] private GameObject Parmesan;
+    [SerializeField] private GameRules GameRules;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private GameObject[] vegetables;
+    [SerializeField] private int VegetablesSpawned = 0;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        spawnRate = (float)60/GameRules.tempo; // find how many seconds must be between each vegetable chop.
-        
-        vegetables = new GameObject[] {Tomato, Garlic, Basil, Parmesan}; // initialize array with vegetables.
-        
-        //TODO: TP1 - Unused method/variable - Why is this in multiple scripts?
-        System.Random randomNumber = new System.Random(); // Initialize random number
+        spawnRate = (float)60/GameRules.tempo;
+        vegetables = new GameObject[] {Tomato, Garlic, Basil, Parmesan};
+        StartCoroutine(SpawnVegetables());
+
+        //TODO: TP1 - Unused method/variable - Why is this in multiple scripts? I thought I needed it to use random numbers!
+        /* Note for professor: I ended up changing a lot about this, because I got so much feedback from so many people that the game would have 
+         been more fun if it started with the entire spectrum of vegetables spawning. I'm not sure if you remember, but previously, 
+         the first quarter of the game was only tomatoes, the next quarter was garlic, then basil, then parmesan, etc. Now I've made it so you start with all the
+        vegetables from the begining. :)*/
     }
 
-    // Update is called once per frame
     void Update()
     {
         //TODO: TP2 - Fix - Clean code
-        if (VegetablesSpawned < ((15*GameRules.beatsInSong)/100))
-        {
-            //TODO: TP2 - Could be a coroutine/Invoke
-            if (Timer < spawnRate) // Count up to spawnrate...
-            {
-                Timer = Timer + Time.deltaTime;
-            }
-            else // ... then spawn a random vegetable from the array
-            {
-                int i = Random.Range(0, ((25*vegetables.Length)/100));
-                Instantiate(vegetables[i], transform.position, transform.rotation);
-                Timer = 0;
-                VegetablesSpawned++;
-            }
-        }
-        if ( VegetablesSpawned >= ((15 * GameRules.beatsInSong) / 100) && VegetablesSpawned < ((30 * GameRules.beatsInSong) / 100))
-        {
-            if (Timer < spawnRate) // Count up to spawnrate...
-            {
-                Timer = Timer + Time.deltaTime;
-            }
-            else // ... then spawn a random vegetable from the array
-            {
-                int i = Random.Range(0, ((50 * vegetables.Length) / 100));
-                Instantiate(vegetables[i], transform.position, transform.rotation);
-                Timer = 0;
-                VegetablesSpawned++;
-            }
-        }
-        if (VegetablesSpawned >= ((30 * GameRules.beatsInSong) / 100) && VegetablesSpawned < ((45 * GameRules.beatsInSong) / 100))
-        {
-            if (Timer < spawnRate) // Count up to spawnrate...
-            {
-                Timer = Timer + Time.deltaTime;
-            }
-            else // ... then spawn a random vegetable from the array
-            {
-                int i = Random.Range(0, ((75 * vegetables.Length) / 100));
-                Instantiate(vegetables[i], transform.position, transform.rotation);
-                Timer = 0;
-                VegetablesSpawned++;
-            }
-        }
-        if (VegetablesSpawned >= ((45 * GameRules.beatsInSong) / 100) && VegetablesSpawned < GameRules.beatsInSong)
+        //TODO: TP2 - Could be a coroutine/Invoke
+        /*if (VegetablesSpawned < GameRules.beatsInSong)
         {
             if (Timer < spawnRate) // Count up to spawnrate...
             {
@@ -86,7 +43,18 @@ public class VegetableSpawner : MonoBehaviour
                 Timer = 0;
                 VegetablesSpawned++;
             }
-        }
+        }*/
+    }
 
+    IEnumerator SpawnVegetables()
+    {
+        while (VegetablesSpawned < GameRules.beatsInSong)
+        {
+            yield return new WaitForSeconds(spawnRate);
+
+            int i = Random.Range(0, vegetables.Length);
+            Instantiate(vegetables[i], transform.position, transform.rotation);
+            VegetablesSpawned++;
+        }
     }
 }
