@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class StaticManager : MonoBehaviour
 {
-    // Start() and Update() methods deleted - we don't need them right now
 
-    public static StaticManager Instance;
-    public int dialogueTracker;
-    public bool videoPlayed = false;
-    public bool knowsPomodoro = false;
-    public bool isServing = false;
-    public bool hasOrdered = false;
-    public int playerScore;
-    public float speed = 5; // Speed of vegetables
-    public float deadZone = 20; // Position at which vegetables are destroyed
+    [SerializeField] public static StaticManager Instance;
+    [SerializeField] public int dialogueTracker = 0;
+    [SerializeField] public bool videoPlayed = false;
+    [SerializeField] public bool knowsPomodoro = false;
+    [SerializeField] public bool isServing = false;
+    [SerializeField] public bool hasOrdered = false;
+    [SerializeField] public int playerScore;
+    [SerializeField] public float speed = 5;
+    [SerializeField] public float deadZone = 20;
+    [SerializeField] public bool lawyerIsDining = true;
 
     private void Awake()
     {

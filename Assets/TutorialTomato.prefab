@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bacc6f8bc115f694bbc355af6c893fb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,13 +190,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TutorialVegetableSpawner: {fileID: 0}
-  Slice: {fileID: 0}
-  TutorialTomatoCollider: {fileID: 7235326156149071669}
-  TutorialGarlicCollider: {fileID: 0}
-  TutorialBasilCollider: {fileID: 0}
-  TutorialParmesanCollider: {fileID: 0}
-  choppedTomatoSprite: {fileID: 21300000, guid: dfccd23c0aa57d14c9f8e5c4c4e7bf5c, type: 3}
-  choppedGarlicSprite: {fileID: 21300000, guid: b490222cae2a6b44593b594e5fd1fd45, type: 3}
-  choppedBasilSprite: {fileID: 21300000, guid: 653d5041692bad94f903ebc9748436df, type: 3}
-  choppedParmesanSprite: {fileID: 21300000, guid: bdf6ce395917b684b8e1d72d4ba2403f, type: 3}
-  SpriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  slice: {fileID: 0}
+  suffix: (Clone)
+  ingredientNames:
+  - TutorialTomato
+  - TutorialBasil
+  - TutorialGarlic
+  - TutorialParmesan
+  choppedSprites:
+  - {fileID: 21300000, guid: dfccd23c0aa57d14c9f8e5c4c4e7bf5c, type: 3}
+  - {fileID: 21300000, guid: 653d5041692bad94f903ebc9748436df, type: 3}
+  - {fileID: 21300000, guid: b490222cae2a6b44593b594e5fd1fd45, type: 3}
+  - {fileID: 21300000, guid: bdf6ce395917b684b8e1d72d4ba2403f, type: 3}
+  colliders:
+  - {fileID: 7235326156149071669}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

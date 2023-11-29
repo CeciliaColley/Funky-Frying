@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bacc6f8bc115f694bbc355af6c893fb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,19 +190,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameRules: {fileID: 0}
-  vegetable: {fileID: 0}
   slice: {fileID: 0}
-  tomatoCollider: {fileID: 0}
-  garlicCollider: {fileID: 0}
-  basilCollider: {fileID: 0}
-  parmesanCollider: {fileID: 0}
-  choppedTomatoSprite: {fileID: 21300000, guid: dfccd23c0aa57d14c9f8e5c4c4e7bf5c, type: 3}
-  choppedGarlicSprite: {fileID: 21300000, guid: b490222cae2a6b44593b594e5fd1fd45, type: 3}
-  choppedBasilSprite: {fileID: 21300000, guid: 653d5041692bad94f903ebc9748436df, type: 3}
-  choppedParmesanSprite: {fileID: 21300000, guid: bdf6ce395917b684b8e1d72d4ba2403f, type: 3}
   spriteRenderer: {fileID: 0}
   suffix: (Clone)
-  vegetableName1: Tomato
-  vegetableName2: Basil
-  vegetableName3: Garlic
-  vegetableName4: Parmesan
+  ingredientNames:
+  - Tomato
+  - Basil
+  - Garlic
+  - Parmesan
+  choppedSprites:
+  - {fileID: 21300000, guid: dfccd23c0aa57d14c9f8e5c4c4e7bf5c, type: 3}
+  - {fileID: 21300000, guid: 653d5041692bad94f903ebc9748436df, type: 3}
+  - {fileID: 21300000, guid: b490222cae2a6b44593b594e5fd1fd45, type: 3}
+  - {fileID: 21300000, guid: bdf6ce395917b684b8e1d72d4ba2403f, type: 3}
+  colliders:
+  - {fileID: 5167282182762898777}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

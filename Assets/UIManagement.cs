@@ -11,6 +11,7 @@ public class UIManagement : MonoBehaviour
     public GameObject Welcome;
     public GameObject nextButton;
     public GameObject MainPanel;
+    public GameObject Lawyer;
     public Flash DoorFlash;
     public GameObject UI;
     public Text dialogueText;
@@ -27,8 +28,7 @@ public class UIManagement : MonoBehaviour
   /*3*/   "Uhhh... We actually don't have pasta on the me-",
   /*4*/   "Ooooooooooooo!",
   /*5*/   "I'm so excited! I've been looking forward to this all week, I even canceled my 4:00 o'clock meeting!",
-  /*6*/   "...",
-  /*7*/   "Uhhhhh... Ok... One pasta pomodoro coming right up!",
+  /*6*/   "Ok... One pasta pomodoro coming right up!",
     };
 
     string[] DefaultDialogueArray = {
@@ -86,12 +86,10 @@ public class UIManagement : MonoBehaviour
 
     void Start()
     {
-        //TODO: TP1 - Unused method/variable
-        System.Random randomNumber = new System.Random(); // Initialize random number
+        //TODO: TP1 - Unused method/variable: I thought I needed to do that every time I used a random number!
         MainPanel.SetActive(false);
 
     }
-
     public void ChooseOption()
     {
         Destroy(Hiya);
@@ -105,160 +103,134 @@ public class UIManagement : MonoBehaviour
         //TODO: TP2 - Fix - Clean code
         if (!StaticManager.Instance.isServing)
         {
-            if (StaticManager.Instance.dialogueTracker < DialogueArray.Length) // Ordering the pasta
-            {
-                if (StaticManager.Instance.dialogueTracker == 0 || StaticManager.Instance.dialogueTracker == 2 || StaticManager.Instance.dialogueTracker == 4 || StaticManager.Instance.dialogueTracker == 5)
-                {
-                    RuggieroImage.SetActive(true);
-                    AnnaImage.SetActive(false);
-                } else
-                {
-                    RuggieroImage.SetActive(false);
-                    AnnaImage.SetActive(true);
-                }
-                dialogueText.text = DialogueArray[StaticManager.Instance.dialogueTracker];
-                StaticManager.Instance.dialogueTracker = StaticManager.Instance.dialogueTracker + 1;
-            }
-            else if (StaticManager.Instance.dialogueTracker == DialogueArray.Length) //Closing the UI
-            {
-                MainPanel.SetActive(false);
-                DoorFlash.isFlashing = true;
-                StaticManager.Instance.dialogueTracker = StaticManager.Instance.dialogueTracker + 1;
-                StaticManager.Instance.hasOrdered = true;
-            }
-            else if (StaticManager.Instance.dialogueTracker == DialogueArray.Length + 1) //Default Dialogue
-            {
-                RuggieroImage.SetActive(true);
-                AnnaImage.SetActive(false);
-                Hiya.SetActive(false);
-                Welcome.SetActive(false);
-                int i = Random.Range(0, DefaultDialogueArray.Length);
-                MainPanel.SetActive(true);
-                dialogueText.text = DefaultDialogueArray[i];
-                StaticManager.Instance.dialogueTracker = 7;
-            }
+            if (StaticManager.Instance.dialogueTracker < DialogueArray.Length) orderingDialogue();
+            else if (StaticManager.Instance.dialogueTracker == DialogueArray.Length + 1) { defaultDialogue(); }
         }
         else
         {
-            if ( StaticManager.Instance.playerScore == 100)
+            servingDialogue();
+        }
+    }
+
+    public void orderingDialogue()
+    {
+        if (StaticManager.Instance.dialogueTracker == 0 || StaticManager.Instance.dialogueTracker == 2 || StaticManager.Instance.dialogueTracker == 4 || StaticManager.Instance.dialogueTracker == 5)
+        {
+            RuggieroImage.SetActive(true);
+            AnnaImage.SetActive(false);
+        }
+        else
+        {
+            RuggieroImage.SetActive(false);
+            AnnaImage.SetActive(true);
+        }
+
+        if (StaticManager.Instance.dialogueTracker < DialogueArray.Length - 1)
+        {
+            StaticManager.Instance.dialogueTracker++;
+            dialogueText.text = DialogueArray[StaticManager.Instance.dialogueTracker];
+        }
+        else
+        {
+            MainPanel.SetActive(false);
+            DoorFlash.isFlashing = true;
+            StaticManager.Instance.hasOrdered = true;
+            StaticManager.Instance.dialogueTracker++;
+        }
+    }
+
+    public void defaultDialogue()
+    {
+        RuggieroImage.SetActive(true);
+        AnnaImage.SetActive(false);
+        if (Hiya != null) { Hiya.SetActive(false); }
+        if (Welcome != null) { Welcome.SetActive(false); }
+        int i = Random.Range(0, DefaultDialogueArray.Length);
+        MainPanel.SetActive(true);
+        dialogueText.text = DefaultDialogueArray[i];
+        StaticManager.Instance.dialogueTracker = DialogueArray.Length + 1;
+    }
+
+    public void servingDialogue()
+    {
+        Hiya.SetActive(false);
+        Welcome.SetActive(false);
+        MainPanel.SetActive(true);
+        if (Lawyer != null)
+        {
+            if (StaticManager.Instance.playerScore == 100)
             {
-                MainPanel.SetActive(true);
-                if (speakerTracker == 0)
-                {
-                    RuggieroImage.SetActive(true);
-                    AnnaImage.SetActive(false);
-                } else if (speakerTracker == 1)
-                {
-                    RuggieroImage.SetActive(false);
-                    AnnaImage.SetActive(true);
-                }
-                Hiya.SetActive(false);
-                Welcome.SetActive(false);
-                if (dialogueTracker == perfectDialogue.Length)
-                {
-                    SceneManager.LoadScene("Credits");
-                }
-                else dialogueText.text = perfectDialogue[dialogueTracker];
-                if (speakerTracker == 0)
-                {
-                        speakerTracker = 1;
-                } 
-                else if (speakerTracker == 1)
-                {
-                        speakerTracker = 0;
-                }
-                dialogueTracker++;
+                determineSpeaker();
+                followConversation(perfectDialogue);
+                retireCustomer(perfectDialogue, Lawyer);
             }
             else if (StaticManager.Instance.playerScore >= 90 && StaticManager.Instance.playerScore <= 99)
             {
                 MainPanel.SetActive(true);
-                if (speakerTracker == 0)
-                {
-                    RuggieroImage.SetActive(true);
-                    AnnaImage.SetActive(false);
-                }
-                else if (speakerTracker == 1)
-                {
-                    RuggieroImage.SetActive(false);
-                    AnnaImage.SetActive(true);
-                }
-                Hiya.SetActive(false);
-                Welcome.SetActive(false);
-                if (dialogueTracker == greatDialogue.Length)
-                {
-                    SceneManager.LoadScene("Credits");
-                }
-                else dialogueText.text = greatDialogue[dialogueTracker];
-                if (speakerTracker == 0)
-                {
-                    speakerTracker = 1;
-                }
-                else if (speakerTracker == 1)
-                {
-                    speakerTracker = 0;
-                }
-                dialogueTracker++;
-                
+                determineSpeaker();
+                followConversation(greatDialogue);
+                retireCustomer(greatDialogue, Lawyer);
+
             }
             else if (StaticManager.Instance.playerScore >= 80 && StaticManager.Instance.playerScore <= 89)
             {
                 MainPanel.SetActive(true);
-                if (speakerTracker == 0)
-                {
-                    RuggieroImage.SetActive(true);
-                    AnnaImage.SetActive(false);
-                }
-                else if (speakerTracker == 1)
-                {
-                    RuggieroImage.SetActive(false);
-                    AnnaImage.SetActive(true);
-                }
-                Hiya.SetActive(false);
-                Welcome.SetActive(false);
-                if (dialogueTracker == goodDialogue.Length)
-                {
-                    SceneManager.LoadScene("Credits");
-                }
-                else dialogueText.text = goodDialogue[dialogueTracker];
-                if (speakerTracker == 0)
-                    {
-                        speakerTracker = 1;
-                    }
-                else if (speakerTracker == 1)
-                    {
-                        speakerTracker = 0;
-                    }
-                dialogueTracker++;
+                determineSpeaker();
+                followConversation(goodDialogue);
+                retireCustomer(goodDialogue, Lawyer);
             }
             else if (StaticManager.Instance.playerScore >= 70 && StaticManager.Instance.playerScore <= 79)
             {
                 MainPanel.SetActive(true);
-                if (speakerTracker == 0)
-                {
-                    RuggieroImage.SetActive(true);
-                    AnnaImage.SetActive(false);
-                }
-                else if (speakerTracker == 1)
-                {
-                    RuggieroImage.SetActive(false);
-                    AnnaImage.SetActive(true);
-                }
-                Hiya.SetActive(false);
-                Welcome.SetActive(false);
-                if (dialogueTracker == okDialogue.Length)
-                {
-                    SceneManager.LoadScene("Credits");
-                } else dialogueText.text = okDialogue[dialogueTracker];
-                if (speakerTracker == 0)
-                    {
-                        speakerTracker = 1;
-                    }
-                else if (speakerTracker == 1)
-                    {
-                        speakerTracker = 0;
-                    }
-                dialogueTracker++;
+                determineSpeaker();
+                followConversation(okDialogue);
+                retireCustomer(okDialogue, Lawyer);
             }
+        } else { Debug.Log("Cannot display dialogue because lawyer is null"); }
+    }
+
+    public void determineSpeaker()
+    {
+        if (speakerTracker == 0)
+        {
+            RuggieroImage.SetActive(true);
+            AnnaImage.SetActive(false);
+        }
+        else if (speakerTracker == 1)
+        {
+            RuggieroImage.SetActive(false);
+            AnnaImage.SetActive(true);
+        }
+    }
+
+    public void followConversation(string[] Dialogue)
+    {
+        if (dialogueTracker < Dialogue.Length - 1)
+        {
+            dialogueText.text = Dialogue[dialogueTracker];
+        }
+        else
+        {
+            MainPanel.SetActive(false);
+        }
+
+        if (speakerTracker == 0)
+        {
+            speakerTracker = 1;
+        }
+        else if (speakerTracker == 1)
+        {
+            speakerTracker = 0;
+        }
+        dialogueTracker++;
+    }
+
+    public void retireCustomer(string[] Dialogue, GameObject Customer)
+    {
+        if (dialogueTracker == Dialogue.Length)
+        {
+            Destroy(Customer);
+            StaticManager.Instance.isServing = false;
         }
     }
 }

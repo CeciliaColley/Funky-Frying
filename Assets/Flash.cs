@@ -22,7 +22,6 @@ public class Flash : MonoBehaviour
 
 
     //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    // Update is called once per frame
     void Update()
     {
         if (isFlashing == true)

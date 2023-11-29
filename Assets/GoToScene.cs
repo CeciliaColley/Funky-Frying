@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GoToScene : MonoBehaviour
 {
-    public void OpenScene(string sceneName)
+    public void OpenScene(string sceneToLoad)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     //TODO: TP2 - Fix - This method doesn't belong in this class

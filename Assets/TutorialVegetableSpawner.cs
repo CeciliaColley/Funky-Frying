@@ -4,138 +4,88 @@ using UnityEngine;
 
 public class TutorialVegetableSpawner : MonoBehaviour
 {
-    public GameObject Tomato;
-    public GameObject Garlic;
-    public GameObject Basil;
-    public GameObject Parmesan;
-    public GameObject TomatoUI;
-    public GameObject GarlicUI;
-    public GameObject BasilUI;
-    public GameObject ParmesanUI;
-    public GameObject WellDone;
-    GameObject[] vegetables;
-    public int TomatoesChopped = 0;
-    public int GarlicChopped = 0;
-    public int BasilChopped = 0;
-    public int ParmesanChopped = 0;
-    private int spawnTracker = 0;
-    private float Timer = 0;
-    private float spawnRate = 1f;
+    [SerializeField] private GameObject tomato;
+    [SerializeField] private GameObject garlic;
+    [SerializeField] private GameObject basil;
+    [SerializeField] private GameObject parmesan;
+    [SerializeField] private GameObject tomatoUI;
+    [SerializeField] private GameObject garlicUI;
+    [SerializeField] private GameObject basilUI;
+    [SerializeField] private GameObject parmesanUI;
+    [SerializeField] private GameObject wellDone;
+    [SerializeField] private GameObject[] vegetables;
+    [SerializeField] public int[] choppedCounts = new int[4] { 0, 0, 0, 0 }; /// [0] = tomato, [1] = basil, [2] = garlic, [3] = parmesan.
+    [SerializeField] private int spawnTracker = 0;
+    [SerializeField] private float spawnRate = 1.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        vegetables = new GameObject[] { Tomato, Garlic, Basil, Parmesan }; // initialize array with vegetables.
-        TomatoUI.SetActive(false);
-        GarlicUI.SetActive(false);
-        BasilUI.SetActive(false);
-        ParmesanUI.SetActive(false);
-        WellDone.SetActive(false);
+        vegetables = new GameObject[] { tomato, basil, garlic, parmesan };
+        garlicUI.SetActive(false);
+        basilUI.SetActive(false);
+        parmesanUI.SetActive(false);
+        wellDone.SetActive(false);
+        StartCoroutine(SpawnVegetableCoroutine());
     }
 
-    // Update is called once per frame
     void Update()
+    { //TODO: TP2 - Fix - Clean code
+      //TODO: TP2 - Could be a coroutine/Invoke: This was so hard omgggg
+    }
+
+    IEnumerator SpawnVegetableCoroutine()
     {
-        //TODO: TP2 - Fix - Clean code
-        if (TomatoesChopped < 1 && GarlicChopped < 1 && BasilChopped < 1 && ParmesanChopped < 1) // If 3 tomatoes haven't been chopped
+        while (true)
         {
-            //TODO: TP2 - Could be a coroutine/Invoke
-            if (Timer < spawnRate) // Count up to spawnrate...
-            {
-                Timer = Timer + Time.deltaTime;
-            }
-            else // ... then spawn a tomato
-            {
-                TomatoUI.SetActive(true);
-                Instantiate(vegetables[0], transform.position, transform.rotation);
-                Timer = 0;
-            }
-        }
+            yield return new WaitForSeconds(spawnRate);
 
-        else if (TomatoesChopped >= 1 && GarlicChopped < 1 && BasilChopped < 1 && ParmesanChopped < 1) // If 3 garlic haven't been chopped
-        {
-            if (Timer < spawnRate) // Count up to spawnrate...
+            if (choppedCounts[0] < 2 && choppedCounts[1] < 2 && choppedCounts[2] < 2 && choppedCounts[3] < 2)
             {
-                Timer = Timer + Time.deltaTime;
+                SpawnVegetable();
+            }
+            else if (choppedCounts[0] >= 2 && choppedCounts[1] < 2 && choppedCounts[2] < 2 && choppedCounts[3] < 2)
+            {
+                SpawnVegetable();
+                ToggleUI(basilUI);
+                SwitchSpawnTracker(1);
+            }
+            else if (choppedCounts[0] >= 2 && choppedCounts[1] >= 2 && choppedCounts[2] < 2 && choppedCounts[3] < 2)
+            {
+                SpawnVegetable();
+                ToggleUI(garlicUI);
+                SwitchSpawnTracker(2);
+            }
+            else if (choppedCounts[0] >= 2 && choppedCounts[1] >= 2 && choppedCounts[2] >= 2 && choppedCounts[3] < 2)
+            {
+                SpawnVegetable();
+                ToggleUI(parmesanUI);
+                SwitchSpawnTracker(3);
+            }
+            else if (choppedCounts[0] >= 2 && choppedCounts[1] >= 2 && choppedCounts[2] >= 2 && choppedCounts[3] >= 2)
+            {
+                StaticManager.Instance.knowsPomodoro = true;
+                wellDone.SetActive(true);
             }
             else
             {
-                GarlicUI.SetActive(true);
-                Instantiate(vegetables[spawnTracker], transform.position, transform.rotation); //Spawn a garlic
-                if (spawnTracker == 0)
-                {
-                    spawnTracker = 1;
-                }
-                else if (spawnTracker == 1)
-                {
-                    spawnTracker = 0;
-                }
-                Timer = 0;
+                Debug.Log("TutorialVegetaleSpawner: the conditions to spawn a vegetable are not being met.");
             }
         }
+    }
 
-        else if (TomatoesChopped >= 1 && GarlicChopped >= 1 && BasilChopped < 1 && ParmesanChopped < 1) // If 3 garlic haven't been chopped
-        {
-            if (Timer < spawnRate) // Count up to spawnrate...
-            {
-                Timer = Timer + Time.deltaTime;
-            }
-            else
-            {
-                BasilUI.SetActive(true);
-                Instantiate(vegetables[spawnTracker], transform.position, transform.rotation); //Spawn a garlic
-                if (spawnTracker == 0)
-                {
-                    spawnTracker = 1;
-                }
-                else if (spawnTracker == 1)
-                {
-                    spawnTracker = 2;
-                }
-                else if (spawnTracker == 2)
-                {
-                    spawnTracker = 0;
-                }
-                Timer = 0;
-            }
-        }
+    void SpawnVegetable()
+    {
+        float i = Random.Range(-0.20f, -1.0f);
+        Instantiate(vegetables[spawnTracker], new Vector3(transform.position.x, i, transform.position.z), transform.rotation);
+    }
 
-        else if (TomatoesChopped >= 1 && GarlicChopped >= 1 && BasilChopped >= 1 && ParmesanChopped < 1) // If 3 garlic haven't been chopped
-        {
-            if (Timer < spawnRate) // Count up to spawnrate...
-            {
-                Timer = Timer + Time.deltaTime;
-            }
-            else
-            {
-                ParmesanUI.SetActive(true);
-                Instantiate(vegetables[spawnTracker], transform.position, transform.rotation); //Spawn a garlic
-                if (spawnTracker == 0)
-                {
-                    spawnTracker = 1;
-                }
-                else if (spawnTracker == 1)
-                {
-                    spawnTracker = 2;
-                }
-                else if (spawnTracker == 2)
-                {
-                    spawnTracker = 3;
-                }
-                else if (spawnTracker == 3)
-                {
-                    spawnTracker = 0;
-                }
-                Timer = 0;
-            }
-        }
+    void ToggleUI(GameObject uiElement)
+    {
+        uiElement.SetActive(true);
+    }
 
-        else if (TomatoesChopped >= 1 && GarlicChopped >= 1 && BasilChopped >= 1 && ParmesanChopped >= 1)
-        {
-            StaticManager.Instance.knowsPomodoro = true;
-            WellDone.SetActive(true);
-        }
-        
-        else Debug.Log("0");
+    void SwitchSpawnTracker(int newIndex)
+    {
+        spawnTracker = newIndex;
     }
 }

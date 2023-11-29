@@ -828,6 +828,7 @@ MonoBehaviour:
   Welcome: {fileID: 1393429182}
   nextButton: {fileID: 2109645204}
   MainPanel: {fileID: 2056887249}
+  Lawyer: {fileID: 1633189821}
   DoorFlash: {fileID: 1987213380}
   UI: {fileID: 2064208168}
   dialogueText: {fileID: 1215116409}
@@ -1857,7 +1858,7 @@ MonoBehaviour:
   currentValue: 0
   saturateOrDesaturate: 1
   flashingColor: {r: 1, g: 0.8885435, b: 0, a: 0}
-  originalColor: {r: 1, g: 1, b: 1, a: 0}
+  originalColor: {r: 1, g: 1, b: 1, a: 1}
   flashSpeed: 2
   isFlashing: 0
 --- !u!212 &1633189825 stripped
@@ -2231,8 +2232,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1987213381}
   currentValue: 0
   saturateOrDesaturate: 1
-  flashingColor: {r: 0, g: 0, b: 0, a: 0}
-  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  flashingColor: {r: 1, g: 0.87379557, b: 0, a: 0}
+  originalColor: {r: 1, g: 1, b: 1, a: 1}
   flashSpeed: 2
   isFlashing: 0
 --- !u!212 &1987213381
@@ -2344,6 +2345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ec6e9099cf6404aa99f1ed10ff6892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goToScene: {fileID: 0}
   sceneToLoad: Kitchen
 --- !u!1 &2056887249
 GameObject:

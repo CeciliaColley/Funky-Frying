@@ -786,19 +786,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab9490c61efeac41b960d36289119e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tomato: {fileID: 8068576967985267697, guid: 9ea67c45fde627848af208476d134c77, type: 3}
-  Garlic: {fileID: 6172912108269235135, guid: 3037dcbe23e9a8e4e92efc3e173b2e34, type: 3}
-  Basil: {fileID: 8489956161469738361, guid: aa6ef3697e6d45049b5b3a215c8518e6, type: 3}
-  Parmesan: {fileID: 8003673021982116423, guid: e00e1c482d10c88458b68445674e9d80, type: 3}
-  TomatoUI: {fileID: 45236519}
-  GarlicUI: {fileID: 1233040613}
-  BasilUI: {fileID: 1324041538}
-  ParmesanUI: {fileID: 1228692166}
-  WellDone: {fileID: 828328726}
-  TomatoesChopped: 0
-  GarlicChopped: 0
-  BasilChopped: 0
-  ParmesanChopped: 0
+  tomato: {fileID: 8068576967985267697, guid: 9ea67c45fde627848af208476d134c77, type: 3}
+  garlic: {fileID: 6172912108269235135, guid: 3037dcbe23e9a8e4e92efc3e173b2e34, type: 3}
+  basil: {fileID: 8489956161469738361, guid: aa6ef3697e6d45049b5b3a215c8518e6, type: 3}
+  parmesan: {fileID: 8003673021982116423, guid: e00e1c482d10c88458b68445674e9d80, type: 3}
+  tomatoUI: {fileID: 45236519}
+  garlicUI: {fileID: 1233040613}
+  basilUI: {fileID: 1324041538}
+  parmesanUI: {fileID: 1228692166}
+  wellDone: {fileID: 828328726}
+  choppedCounts: 00000000000000000000000000000000
 --- !u!4 &570820535
 Transform:
   m_ObjectHideFlags: 0
@@ -1208,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -226.99994, y: 0}
+  m_AnchoredPosition: {x: 186, y: 0}
   m_SizeDelta: {x: -1720.5, y: -65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233040615
@@ -1283,7 +1280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 186, y: 0}
+  m_AnchoredPosition: {x: -226.99994, y: 0}
   m_SizeDelta: {x: -1720.5, y: -65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324041540

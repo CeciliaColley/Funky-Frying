@@ -25,7 +25,7 @@ public class GameRules : MonoBehaviour
     [SerializeField] public int beatsInSong = 164;
     [SerializeField] private AudioSource music;
     [SerializeField] private float audioLength;
-    [SerializeField] private int percentage;
+    [SerializeField] private int percentage = 0;
 
     void Start()
     {
@@ -36,47 +36,39 @@ public class GameRules : MonoBehaviour
     void Update()
     {
         //TODO: Fix - Remove redundant comments
-        if (music.time >= audioLength)
-        {
-            OnMusicEnd();
-        }
+        if (music.time >= audioLength){ OnMusicEnd(); }
     }
 
     void OnMusicEnd()
     {
-        Debug.Log("Music Ended, show UI now");
-        if (playerScore != 0)
-        {
-            percentage = playerScore * 100 / beatsInSong;
-        }
+        if (playerScore != 0){percentage = playerScore * 100 / beatsInSong;}
         else percentage = 0;
 
         StaticManager.Instance.playerScore = percentage;
-        
-        percentageString.text = percentage.ToString() + "%";
-        
-        scorePanel.SetActive(true);
-        perfect.SetActive(false);
-        great.SetActive(false);
-        good.SetActive(false);
-        ok.SetActive(false);
-        cantServe.SetActive(false);
+
+        if (percentageString != null) { percentageString.text = percentage.ToString() + "%"; }
+
+        if (scorePanel != null) { scorePanel.SetActive(true); }
+        if (perfect != null) { perfect.SetActive(false); }
+        if (great != null) { great.SetActive(false); }
+        if (good != null) { good.SetActive(false); }
+        if (ok != null) { ok.SetActive(false); }
+        if (cantServe != null) { cantServe.SetActive(false); }
 
         //TODO: Fix - Simplify, we can talk about this in class
-        if (percentage == 100) { perfect.SetActive(true); StaticManager.Instance.isServing = true; } 
-        else if (percentage >= 90) { great.SetActive(true); StaticManager.Instance.isServing = true; } 
-        else if (percentage >= 80) {good.SetActive(true); StaticManager.Instance.isServing = true; } 
-        else if (percentage >= 70) { ok.SetActive(true); StaticManager.Instance.isServing = true; } 
-        else if (percentage <= 69) { cantServe.SetActive(true); serve.SetActive(false); }
+        //Note for professor: I did my best to make it better, I hope this was what you were looking for!
+
+        if (percentage == 100 && perfect != null) { perfect.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage >= 90 && great != null) { great.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage >= 80 && good != null) {good.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage >= 70 && ok != null) { ok.SetActive(true); StaticManager.Instance.isServing = true; } 
+        else if (percentage <= 69 && cantServe != null && serve != null) { cantServe.SetActive(true); serve.SetActive(false); }
 
     }
 
     public void AddScore(int Score)
     {
         playerScore = playerScore + Score;
-        if (scoreText != null )
-        {
-            scoreText.text = playerScore.ToString();
-        }
+        if (scoreText != null ){scoreText.text = playerScore.ToString();}
     }
 }

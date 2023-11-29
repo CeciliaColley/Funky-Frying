@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,71 +6,54 @@ using UnityEngine;
 public class TutorialHitZone : MonoBehaviour
 {
     public TutorialVegetableSpawner TutorialVegetableSpawner;
-    public SliceActions Slice;
-    public BoxCollider2D TutorialTomatoCollider;
-    public BoxCollider2D TutorialGarlicCollider;
-    public BoxCollider2D TutorialBasilCollider;
-    public BoxCollider2D TutorialParmesanCollider;
-    public Sprite choppedTomatoSprite;
-    public Sprite choppedGarlicSprite;
-    public Sprite choppedBasilSprite;
-    public Sprite choppedParmesanSprite;
-    public SpriteRenderer SpriteRenderer;
+    public SpriteRenderer spriteRenderer;
+    public SliceActions slice;
+    [SerializeField] private string suffix = "(Clone)";
+    [SerializeField] private string[] ingredientNames = { "TutorialTomato", "TutorialBasil", "TutorialGarlic", "TutorialParmesan" };
+    [SerializeField] private Sprite[] choppedSprites = new Sprite[4];
+    [SerializeField] private BoxCollider2D[] colliders = new BoxCollider2D[4];
 
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private SliceActions.InputOptions GetCorrespondingInputOption(int index)
     {
-        //TODO: TP2 - Fix - Repeated code
-        string VegetableName;
-        VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - "(Clone)".Length));
-
-
-        if (VegetableName == "TutorialTomato")
+        switch (index)
         {
-            if (Slice.ArrowPressed == SliceActions.InputOptions.up)
-            {
-                TutorialVegetableSpawner.TomatoesChopped = TutorialVegetableSpawner.TomatoesChopped +1;
-                SpriteRenderer.sprite = choppedTomatoSprite;
-                Destroy(TutorialTomatoCollider);
-            }
-
+            case 0:
+                return SliceActions.InputOptions.up;
+            case 1:
+                return SliceActions.InputOptions.down;
+            case 2:
+                return SliceActions.InputOptions.left;
+            case 3:
+                return SliceActions.InputOptions.right;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(index), "Invalid index for InputOptions");
         }
-        if (VegetableName == "TutorialBasil")
-        {
-            if (Slice.ArrowPressed == SliceActions.InputOptions.down)
-            {
-                TutorialVegetableSpawner.BasilChopped = TutorialVegetableSpawner.BasilChopped + 1;
-                SpriteRenderer.sprite = choppedBasilSprite;
-                Destroy(TutorialBasilCollider);
-            }
-        }
-        if (VegetableName == "TutorialGarlic")
-        {
-            if (Slice.ArrowPressed == SliceActions.InputOptions.left)
-            {
-                TutorialVegetableSpawner.GarlicChopped = TutorialVegetableSpawner.GarlicChopped + 1;
-                SpriteRenderer.sprite = choppedGarlicSprite;
-                Destroy(TutorialGarlicCollider);
-            }
-        }
-        if (VegetableName == "TutorialParmesan")
-        {
-            if (Slice.ArrowPressed == SliceActions.InputOptions.right)
-            {
-                TutorialVegetableSpawner.ParmesanChopped = TutorialVegetableSpawner.ParmesanChopped + 1;
-                SpriteRenderer.sprite = choppedParmesanSprite;
-                Destroy(TutorialParmesanCollider);
-            }
-        }
-
     }
 
+    //TODO: TP2 - Fix - Repeated code
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        string VegetableName;
+        VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - suffix.Length));
 
-    // Start is called before the first frame update
+        for (int i = 0; i < ingredientNames.Length; i++)
+        {
+            if (VegetableName == ingredientNames[i])
+            {
+                if (slice.ArrowPressed == GetCorrespondingInputOption(i))
+                {
+                    TutorialVegetableSpawner.choppedCounts[i] = TutorialVegetableSpawner.choppedCounts[i] + 1;
+                    spriteRenderer.sprite = choppedSprites[i];
+                    Destroy(colliders[i]);
+                }
+            }
+        }
+    }
+
     void Start()
     {
-        Slice = GameObject.FindAnyObjectByType<SliceActions>();
+        slice = GameObject.FindAnyObjectByType<SliceActions>();
         TutorialVegetableSpawner = GameObject.FindAnyObjectByType<TutorialVegetableSpawner>();
-        SpriteRenderer = GetComponentInParent<SpriteRenderer>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
 }

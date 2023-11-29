@@ -7,39 +7,39 @@ using UnityEngine.UIElements;
 
 public class Lawyer : MonoBehaviour
 {
-    public UIManagement UIManagement;
-    public Flash Flash;
+    [SerializeField] public UIManagement uiManagement;
+    [SerializeField] public Flash flash;
     private void OnMouseDown()
     {
         if (StaticManager.Instance.dialogueTracker == 0)
         {
             //TODO: TP2 - Fix - Possible null reference
-            if (UIManagement != null)
+            if (uiManagement != null)
             {
-                UIManagement.MainPanel.SetActive(true);
-                UIManagement.nextButton.SetActive(false);
-                UIManagement.RuggieroImage.SetActive(false);
+                uiManagement.MainPanel.SetActive(true);
+                uiManagement.nextButton.SetActive(false);
+                uiManagement.RuggieroImage.SetActive(false);
             }
             
             //TODO: TP2 - Fix - Possible null reference
-            if (Flash != null)  { Flash.isFlashing = false; }
+            if (flash != null)  { flash.isFlashing = false; }
             
         }
         else
         {
-            if (UIManagement != null) { UIManagement.DisplayDialogue(); }
+            if (uiManagement != null) { uiManagement.DisplayDialogue(); }
         }
     }
 
 
     void Start()
     {
-        UIManagement = GameObject.FindAnyObjectByType<UIManagement>();
-        Flash = GetComponent<Flash>();
+        uiManagement = GameObject.FindAnyObjectByType<UIManagement>();
+        flash = GetComponent<Flash>();
         if (StaticManager.Instance.dialogueTracker == 0)
         {
             //TODO: TP2 - Fix - Possible null reference
-            if (Flash != null) { Flash.isFlashing = true; }
+            if (flash != null) { flash.isFlashing = true; }
         }
     }
 
