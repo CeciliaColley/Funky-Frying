@@ -14,7 +14,7 @@ public class DoorToFOHBehaviour : MonoBehaviour
     {
         if (KitchenUI != null)
         {
-            if (!KitchenUI.MainPanel.activeSelf) { goToScene.OpenScene(sceneToLoad); }
+            if (!KitchenUI.PastaMainPanel.activeSelf && !KitchenUI.KaleRecipe.activeSelf) { goToScene.OpenScene(sceneToLoad); }
         }
         
     }

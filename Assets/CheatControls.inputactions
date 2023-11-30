@@ -1,0 +1,86 @@
+{
+    "name": "CheatControls",
+    "maps": [
+        {
+            "name": "CustomCheatControls",
+            "id": "7930720e-1d48-43e9-a56c-68c3c69948a8",
+            "actions": [
+                {
+                    "name": "Win",
+                    "type": "Button",
+                    "id": "38dc0f4d-98cb-4904-99fc-a9b57236c6bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slow Down",
+                    "type": "Button",
+                    "id": "28c64bfa-00d8-4e01-ab4e-5750f221d55f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Change Position",
+                    "type": "Button",
+                    "id": "4a9e45a4-be54-46ed-acc9-8f5083747ef0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c2857bd4-54b7-4e93-8554-a574c7c6e3f2",
+                    "path": "<Keyboard>/f10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Win",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95cc105e-abdb-4846-9958-586c2b2bd915",
+                    "path": "<Keyboard>/f11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slow Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28a9fb29-23f5-47dd-baf6-eb3d54f3d681",
+                    "path": "<Keyboard>/f12",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

@@ -18,7 +18,11 @@ public class StaticManager : MonoBehaviour
     [SerializeField] public bool influencerIsDining = false;
     [SerializeField] public bool influencerIsOrdering = false;
     [SerializeField] public bool influencerHasOrdered = false;
+    [SerializeField] public bool introVideoFinished = false;
     [SerializeField] public int influencerDialogueTracker = 0;
+    [SerializeField] public bool automaticKill = false;
+    [SerializeField] public bool slowDown = false;
+
 
     private void Awake()
     {

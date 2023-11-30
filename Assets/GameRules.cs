@@ -8,7 +8,7 @@ using UnityEngine.Video;
 [System.Serializable]
 public class GameRules : MonoBehaviour
 {
-    [SerializeField] private int playerScore = 0;
+    [SerializeField] public int playerScore = 0;
     [SerializeField] public int chopPoint = 1;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text percentageString;
@@ -21,10 +21,9 @@ public class GameRules : MonoBehaviour
     [SerializeField] private GameObject tryAgain;
     [SerializeField] private GameObject serve;
     [SerializeField] public int tempo = 118;
-    
     [SerializeField] public int beatsInSong = 164;
     [SerializeField] private AudioSource music;
-    [SerializeField] private float audioLength;
+    [SerializeField] public float audioLength;
     [SerializeField] private int percentage = 0;
 
     void Start()
@@ -71,4 +70,11 @@ public class GameRules : MonoBehaviour
         playerScore = playerScore + Score;
         if (scoreText != null ){scoreText.text = playerScore.ToString();}
     }
+    public void SubtractScore(int Score)
+    {
+        playerScore = playerScore - Score;
+        if (scoreText != null) { scoreText.text = playerScore.ToString(); }
+    }
+
+    
 }

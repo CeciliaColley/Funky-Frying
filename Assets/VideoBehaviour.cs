@@ -26,6 +26,7 @@ public class VideoBehaviour : MonoBehaviour
 
    void OnVideoEnd(VideoPlayer vp)
     {
+        StaticManager.Instance.introVideoFinished = true;
         Destroy(RawImage);
         Destroy(videoPlayer);
     }

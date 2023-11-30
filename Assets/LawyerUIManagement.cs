@@ -105,8 +105,8 @@ public class LawyerUIManagement : MonoBehaviour
         //TODO: TP2 - Fix - Clean code
         if (!StaticManager.Instance.isServing)
         {
-            if (StaticManager.Instance.lawyerDialogueTracker < DialogueArray.Length) { orderingDialogue(); }
-            else if (StaticManager.Instance.lawyerDialogueTracker == DialogueArray.Length) { defaultDialogue(); }
+            if (StaticManager.Instance.lawyerDialogueTracker <= DialogueArray.Length) { orderingDialogue(); }
+            else if (StaticManager.Instance.lawyerDialogueTracker == DialogueArray.Length + 1) { defaultDialogue(); }
         }
         else
         {
@@ -118,19 +118,19 @@ public class LawyerUIManagement : MonoBehaviour
     {
         if (StaticManager.Instance.lawyerDialogueTracker == 0 || StaticManager.Instance.lawyerDialogueTracker == 2 || StaticManager.Instance.lawyerDialogueTracker == 4 || StaticManager.Instance.lawyerDialogueTracker == 5)
         {
-            RuggieroImage.SetActive(false);
-            AnnaImage.SetActive(true);
-        }
-        else
-        {
             RuggieroImage.SetActive(true);
             AnnaImage.SetActive(false);
         }
-
-        if (StaticManager.Instance.lawyerDialogueTracker < DialogueArray.Length - 1)
+        else
         {
-            StaticManager.Instance.lawyerDialogueTracker++;
+            RuggieroImage.SetActive(false);
+            AnnaImage.SetActive(true);
+        }
+
+        if (StaticManager.Instance.lawyerDialogueTracker < DialogueArray.Length)
+        {
             dialogueText.text = DialogueArray[StaticManager.Instance.lawyerDialogueTracker];
+            StaticManager.Instance.lawyerDialogueTracker++;
         }
         else
         {
@@ -150,7 +150,7 @@ public class LawyerUIManagement : MonoBehaviour
         int i = Random.Range(0, DefaultDialogueArray.Length);
         MainPanel.SetActive(true);
         dialogueText.text = DefaultDialogueArray[i];
-        StaticManager.Instance.lawyerDialogueTracker = DialogueArray.Length - 1;
+        StaticManager.Instance.lawyerDialogueTracker = DialogueArray.Length;
     }
 
     public void servingDialogue()
@@ -168,7 +168,6 @@ public class LawyerUIManagement : MonoBehaviour
             }
             else if (StaticManager.Instance.playerScore >= 90 && StaticManager.Instance.playerScore <= 99)
             {
-                MainPanel.SetActive(true);
                 determineSpeaker();
                 followConversation(greatDialogue);
                 retireCustomer(greatDialogue, Lawyer);
@@ -176,19 +175,17 @@ public class LawyerUIManagement : MonoBehaviour
             }
             else if (StaticManager.Instance.playerScore >= 80 && StaticManager.Instance.playerScore <= 89)
             {
-                MainPanel.SetActive(true);
                 determineSpeaker();
                 followConversation(goodDialogue);
                 retireCustomer(goodDialogue, Lawyer);
             }
             else if (StaticManager.Instance.playerScore >= 70 && StaticManager.Instance.playerScore <= 79)
             {
-                MainPanel.SetActive(true);
                 determineSpeaker();
                 followConversation(okDialogue);
                 retireCustomer(okDialogue, Lawyer);
             }
-        } else { Debug.Log("Cannot display dialogue because lawyer is null"); }
+        }
     }
 
     public void determineSpeaker()
@@ -207,7 +204,7 @@ public class LawyerUIManagement : MonoBehaviour
 
     public void followConversation(string[] Dialogue)
     {
-        if (dialogueTracker < Dialogue.Length - 1)
+        if (dialogueTracker < Dialogue.Length)
         {
             dialogueText.text = Dialogue[dialogueTracker];
         }
@@ -229,12 +226,12 @@ public class LawyerUIManagement : MonoBehaviour
 
     public void retireCustomer(string[] Dialogue, GameObject Customer)
     {
-        if (dialogueTracker == Dialogue.Length)
+        if (dialogueTracker == Dialogue.Length+1)
         {
             StaticManager.Instance.lawyerIsDining = false;
             Lawyer = GameObject.Find("Lawyer(Clone)");
             Destroy(Lawyer);
-            StaticManager.Instance.isServing = false;
+            //StaticManager.Instance.isServing = false;
             StaticManager.Instance.hasOrdered = false;
         }
     }

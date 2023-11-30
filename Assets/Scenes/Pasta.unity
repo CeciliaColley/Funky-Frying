@@ -167,12 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee2b293f92953145a05fb5534cf4c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tomato: {fileID: 2359724840482344722, guid: c2797df35a6ce9d438238b7db50ceafc, type: 3}
-  Garlic: {fileID: 3968120246878101303, guid: 9e2c82f383df5734f91bf38f7f3d92e6, type: 3}
-  Basil: {fileID: 2263525802178543000, guid: e528a35ddcd313948888168355942c65, type: 3}
-  Parmesan: {fileID: 8252896948202051877, guid: 5c210f64d0cc39e4bbc2df5680d75052, type: 3}
+  Ingredient1: {fileID: 2359724840482344722, guid: c2797df35a6ce9d438238b7db50ceafc, type: 3}
+  Ingredient2: {fileID: 2263525802178543000, guid: e528a35ddcd313948888168355942c65, type: 3}
+  Ingredient3: {fileID: 3968120246878101303, guid: 9e2c82f383df5734f91bf38f7f3d92e6, type: 3}
+  Ingredient4: {fileID: 8252896948202051877, guid: 5c210f64d0cc39e4bbc2df5680d75052, type: 3}
   GameRules: {fileID: 624177713}
-  VegetablesSpawned: 0
+  spawnRate: 0
+  ingredients: []
+  ingredientsSpawned: 0
+  music: {fileID: 1189698902}
 --- !u!1 &97439177
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 624177714}
   - component: {fileID: 624177713}
+  - component: {fileID: 624177715}
   m_Layer: 0
   m_Name: LogicManager
   m_TagString: Untagged
@@ -630,6 +634,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624177715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624177712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85571a35b1c7f44d861b974a342e3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameRules: {fileID: 624177713}
+  ingredientSpawner: {fileID: 2377268}
+  knife: {fileID: 1508538551}
+  StartingPoint: {x: 0, y: 0, z: 0}
+  toggleTracker: 0
 --- !u!1 &912716926
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +1000,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 234c4e884e3b69d4c99331fcea37164d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1253,7 +1274,7 @@ GameObject:
   - component: {fileID: 1508538556}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: Knife
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2064,9 +2085,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 624177714}
   - {fileID: 1465196986}
   - {fileID: 1508538555}
-  - {fileID: 624177714}
   - {fileID: 1633899799}
   - {fileID: 1781151740}
   - {fileID: 2377267}

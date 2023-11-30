@@ -12,7 +12,6 @@ public class Lawyer : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     private void OnMouseDown()
     {
-        Debug.Log("Clicked");
         spriteRenderer.color = Color.white;
         if (StaticManager.Instance.lawyerDialogueTracker == 0)
         {
@@ -22,7 +21,7 @@ public class Lawyer : MonoBehaviour
                 uiManagement.MainPanel.SetActive(true);
                 uiManagement.nextButton.SetActive(false);
                 uiManagement.RuggieroImage.SetActive(false);
-            } else { Debug.Log("uiManagement is null"); }
+            }
             
             //TODO: TP2 - Fix - Possible null reference
             if (flash != null)  { flash.isFlashing = false; }
@@ -30,8 +29,7 @@ public class Lawyer : MonoBehaviour
         }
         else
         {
-            Debug.Log("entered else");
-            if (uiManagement != null) { uiManagement.DisplayDialogue(); Debug.Log("Display Dialogue happening"); } else { Debug.Log("uiManagement is null"); }
+            if (uiManagement != null) { uiManagement.DisplayDialogue();}
         }
     }
 

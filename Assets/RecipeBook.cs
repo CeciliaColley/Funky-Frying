@@ -11,18 +11,27 @@ public class RecipeBook : MonoBehaviour
         if (kitchenUI != null)
         {
             //TODO: TP2 - Fix - Clean code
-            if (!StaticManager.Instance.knowsPomodoro)
+            if (StaticManager.Instance.lawyerIsDining == true)
             {
-                kitchenUI.MainPanel.SetActive(true);
-                kitchenUI.LearnButton.SetActive(true);
-                kitchenUI.CookButton.SetActive(false);
-            }
-            else
+                if (!StaticManager.Instance.knowsPomodoro)
+                {
+                    kitchenUI.PastaMainPanel.SetActive(true);
+                    kitchenUI.PastaLearnButton.SetActive(true);
+                    kitchenUI.PastaCookButton.SetActive(false);
+                }
+                else
+                {
+                    kitchenUI.PastaMainPanel.SetActive(true);
+                    kitchenUI.PastaMainPanel.SetActive(true);
+                    kitchenUI.PastaMainPanel.SetActive(true);
+                }
+            } else if (StaticManager.Instance.influencerIsDining == true)
             {
-                kitchenUI.MainPanel.SetActive(true);
-                kitchenUI.LearnButton.SetActive(true);
-                kitchenUI.CookButton.SetActive(true);
+                kitchenUI.KaleRecipe.SetActive(true);
+                kitchenUI.KaleCookButton.SetActive(true);
+                
             }
+
         }
     }
 

@@ -13,7 +13,6 @@ public class Influencer : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked");
         InfluencerUIManager.displayDialogue();
     }
 }

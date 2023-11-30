@@ -15,6 +15,7 @@ public class HitZone : MonoBehaviour
     [SerializeField] private string[] ingredientNames = { "Tomato", "Basil", "Garlic", "Parmesan" };
     [SerializeField] private Sprite[] choppedSprites = new Sprite[4];
     [SerializeField] private BoxCollider2D[] colliders = new BoxCollider2D[4];
+    [SerializeField] private bool hasAddedScore = false;
 
     private SliceActions.InputOptions GetCorrespondingInputOption(int index)
     {
@@ -52,10 +53,34 @@ public class HitZone : MonoBehaviour
         }
     }
 
+
     void Start()
     {
         gameRules = GameObject.FindAnyObjectByType<GameRules>();
         slice = GameObject.FindAnyObjectByType<SliceActions>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if (StaticManager.Instance.automaticKill && !hasAddedScore)
+        {
+            if (transform.parent.position.x > StaticManager.Instance.deadZone / 4)
+            {
+                string VegetableName;
+                VegetableName = transform.parent.name.Substring(0, (transform.parent.name.Length - suffix.Length));
+
+                for (int i = 0; i < ingredientNames.Length; i++)
+                {
+                    if (VegetableName == ingredientNames[i])
+                    {
+                        gameRules.AddScore(gameRules.chopPoint);
+                        spriteRenderer.sprite = choppedSprites[i];
+                        Destroy(colliders[i]);
+                        hasAddedScore = true;
+                    }
+                }
+            }
+        }
     }
 }
