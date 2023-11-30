@@ -581,6 +581,7 @@ GameObject:
   - component: {fileID: 448707149}
   - component: {fileID: 448707148}
   - component: {fileID: 448707152}
+  - component: {fileID: 448707153}
   m_Layer: 0
   m_Name: KitchenDoor
   m_TagString: Untagged
@@ -653,7 +654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KitchenUI: {fileID: 170663060}
-  goToScene: {fileID: 0}
+  goToScene: {fileID: 448707153}
   sceneToLoad: FrontOfHouse
 --- !u!4 &448707151
 Transform:
@@ -715,6 +716,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.63, y: 10.7}
   m_EdgeRadius: 0
+--- !u!114 &448707153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448707147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fced1e6432bff54fa1951db608f62cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &666348004
 GameObject:
   m_ObjectHideFlags: 0

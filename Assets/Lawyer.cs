@@ -7,11 +7,14 @@ using UnityEngine.UIElements;
 
 public class Lawyer : MonoBehaviour
 {
-    [SerializeField] public UIManagement uiManagement;
+    [SerializeField] public LawyerUIManagement uiManagement;
     [SerializeField] public Flash flash;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private void OnMouseDown()
     {
-        if (StaticManager.Instance.dialogueTracker == 0)
+        Debug.Log("Clicked");
+        spriteRenderer.color = Color.white;
+        if (StaticManager.Instance.lawyerDialogueTracker == 0)
         {
             //TODO: TP2 - Fix - Possible null reference
             if (uiManagement != null)
@@ -19,7 +22,7 @@ public class Lawyer : MonoBehaviour
                 uiManagement.MainPanel.SetActive(true);
                 uiManagement.nextButton.SetActive(false);
                 uiManagement.RuggieroImage.SetActive(false);
-            }
+            } else { Debug.Log("uiManagement is null"); }
             
             //TODO: TP2 - Fix - Possible null reference
             if (flash != null)  { flash.isFlashing = false; }
@@ -27,16 +30,18 @@ public class Lawyer : MonoBehaviour
         }
         else
         {
-            if (uiManagement != null) { uiManagement.DisplayDialogue(); }
+            Debug.Log("entered else");
+            if (uiManagement != null) { uiManagement.DisplayDialogue(); Debug.Log("Display Dialogue happening"); } else { Debug.Log("uiManagement is null"); }
         }
     }
 
 
     void Start()
     {
-        uiManagement = GameObject.FindAnyObjectByType<UIManagement>();
+        uiManagement = GameObject.FindAnyObjectByType<LawyerUIManagement>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         flash = GetComponent<Flash>();
-        if (StaticManager.Instance.dialogueTracker == 0)
+        if (StaticManager.Instance.lawyerDialogueTracker == 0)
         {
             //TODO: TP2 - Fix - Possible null reference
             if (flash != null) { flash.isFlashing = true; }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Flash : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private float currentValue = 0;
+    [SerializeField] public float currentValue = 0;
     //TODO: Fix - Use summary (place 3 slashes ///) Instead of simple comment
     [SerializeField] private float saturateOrDesaturate = 1f; /// -1 for desaturate, +1 for saturate
     [SerializeField] private Color flashingColor;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
-public class UIManagement : MonoBehaviour
+public class LawyerUIManagement : MonoBehaviour
 {
     [SerializeField] private GameObject Hiya;
     [SerializeField] private GameObject Welcome;
@@ -105,8 +105,8 @@ public class UIManagement : MonoBehaviour
         //TODO: TP2 - Fix - Clean code
         if (!StaticManager.Instance.isServing)
         {
-            if (StaticManager.Instance.dialogueTracker < DialogueArray.Length) orderingDialogue();
-            else if (StaticManager.Instance.dialogueTracker == DialogueArray.Length + 1) { defaultDialogue(); }
+            if (StaticManager.Instance.lawyerDialogueTracker < DialogueArray.Length) { orderingDialogue(); }
+            else if (StaticManager.Instance.lawyerDialogueTracker == DialogueArray.Length) { defaultDialogue(); }
         }
         else
         {
@@ -116,28 +116,28 @@ public class UIManagement : MonoBehaviour
 
     public void orderingDialogue()
     {
-        if (StaticManager.Instance.dialogueTracker == 0 || StaticManager.Instance.dialogueTracker == 2 || StaticManager.Instance.dialogueTracker == 4 || StaticManager.Instance.dialogueTracker == 5)
-        {
-            RuggieroImage.SetActive(true);
-            AnnaImage.SetActive(false);
-        }
-        else
+        if (StaticManager.Instance.lawyerDialogueTracker == 0 || StaticManager.Instance.lawyerDialogueTracker == 2 || StaticManager.Instance.lawyerDialogueTracker == 4 || StaticManager.Instance.lawyerDialogueTracker == 5)
         {
             RuggieroImage.SetActive(false);
             AnnaImage.SetActive(true);
         }
-
-        if (StaticManager.Instance.dialogueTracker < DialogueArray.Length - 1)
+        else
         {
-            StaticManager.Instance.dialogueTracker++;
-            dialogueText.text = DialogueArray[StaticManager.Instance.dialogueTracker];
+            RuggieroImage.SetActive(true);
+            AnnaImage.SetActive(false);
+        }
+
+        if (StaticManager.Instance.lawyerDialogueTracker < DialogueArray.Length - 1)
+        {
+            StaticManager.Instance.lawyerDialogueTracker++;
+            dialogueText.text = DialogueArray[StaticManager.Instance.lawyerDialogueTracker];
         }
         else
         {
             MainPanel.SetActive(false);
             DoorFlash.isFlashing = true;
             StaticManager.Instance.hasOrdered = true;
-            StaticManager.Instance.dialogueTracker++;
+            StaticManager.Instance.lawyerDialogueTracker++;
         }
     }
 
@@ -150,7 +150,7 @@ public class UIManagement : MonoBehaviour
         int i = Random.Range(0, DefaultDialogueArray.Length);
         MainPanel.SetActive(true);
         dialogueText.text = DefaultDialogueArray[i];
-        StaticManager.Instance.dialogueTracker = DialogueArray.Length + 1;
+        StaticManager.Instance.lawyerDialogueTracker = DialogueArray.Length - 1;
     }
 
     public void servingDialogue()
@@ -235,6 +235,7 @@ public class UIManagement : MonoBehaviour
             Lawyer = GameObject.Find("Lawyer(Clone)");
             Destroy(Lawyer);
             StaticManager.Instance.isServing = false;
+            StaticManager.Instance.hasOrdered = false;
         }
     }
 }

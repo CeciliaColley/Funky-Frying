@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class VegetableScript : MonoBehaviour
 {
-    [SerializeField] private bool isChopped = false;
-
     void Update()
     {
         transform.position = transform.position + Vector3.right * StaticManager.Instance.speed * Time.deltaTime;
