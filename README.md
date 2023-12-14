@@ -1,3 +1,5 @@
+He realizado cambios sustanciales en el código de mi proyecto, manteniendo la experiencia del juego lo mas parecido a antes posible. He reescrito el código de manera completa, adoptando prácticas más eficientes y optimizadas, aplicando los conocimientos adquiridos durante el semestre. He añadido varias mecánicas nuevas. A continuacion hay una explicacion del proyecto.
+
 El proyecto debe ser primero y principal, un videojuego. Esto significa que no pueden haber game-breaking bugs (Un error o defecto que impide que se pueda jugarcorrectamente o que altera significativamente la experiencia de juego prevista). Cualquier caso de bug que arruine/inhabilite una mecánica, el flujo a través de las pantallas o la compleción/re-jugabilidad del juego, dejará esta entrega desaprobada automaticamente. 
 
 Resolucion: Mi videojuego ha sido desarrollado con especial atención para evitar game-breaking bugs. He realizado pruebas exhaustivas y implementado medidas preventivas, como null checks donde sean necesarios, y limpieza de código. Para ver como mi juego fluje, puede jugarlo, o referirte al video.
