@@ -1,0 +1,86 @@
+{
+    "name": "KitchenInputs",
+    "maps": [
+        {
+            "name": "KitchenControllerInputs",
+            "id": "59814ac5-23a2-44dd-b8d3-d84af36a0b7f",
+            "actions": [
+                {
+                    "name": "GoToFrontOfHouse",
+                    "type": "Button",
+                    "id": "4578034b-b7e0-4669-bd23-4801e915a6e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Open Recipe Book",
+                    "type": "Button",
+                    "id": "a898aa3e-ebe1-457f-a9ba-edc54be43885",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MainMenu",
+                    "type": "Button",
+                    "id": "c811d26e-f5fe-40e6-957a-b5e148c3c5fe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c66f3ccb-4302-4de4-828b-94d62bda3886",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "GoToFrontOfHouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac92f6b3-897d-4e02-aaa5-b563c31648e4",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Open Recipe Book",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5acd80d0-112d-4b7b-9a09-a42249aad25e",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
